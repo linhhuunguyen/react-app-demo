@@ -1,10 +1,10 @@
-import { useState, ChangeEvent } from 'react';
+import { useState, ChangeEvent } from "react";
 
 type FormValues = {
   [key: string]: string;
 };
 
-export type ValidationRules = {
+type ValidationRules = {
   [key: string]: (value: string) => string | null;
 };
 
@@ -16,7 +16,9 @@ type useFormReturn = [
   FormValues,
   ValidationErrors,
   (e: ChangeEvent<HTMLInputElement>) => void,
-  () => boolean
+  () => boolean,
+  React.Dispatch<React.SetStateAction<ValidationErrors>>,
+  (name: string, value: string) => void
 ];
 
 const useForm = (
@@ -52,7 +54,7 @@ const useForm = (
     return !hasError;
   };
 
-  return [values, errors, handleChange, isFormValid];
+  return [values, errors, handleChange, isFormValid, setErrors,validateField];
 };
 
 export default useForm;

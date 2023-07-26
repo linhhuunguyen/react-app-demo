@@ -5,7 +5,7 @@ export interface InputProps extends ComponentPropsWithoutRef<"input"> {
   label?: string;
   classNameLabel?: string;
   classNameContainer?: string;
-  error?: string;
+  error?: string | null;
   value?: string | number | ReadonlyArray<string> | undefined;
 }
 
@@ -38,10 +38,7 @@ export default function Input({
         id={id}
         readOnly={false}
         className={clsx(
-          "border-[#44226d] outline-0 text-purple-primary text-sm lg:text-base",
-          !className?.startsWith("border") && "border lg:border-[2px] ",
-          !className?.startsWith("px") && "lg:px-2.5 px-1",
-          !className?.startsWith("py") && "lg:py-2.5 py-1",
+          "border-[#44226d] outline-0 text-purple-primary text-sm lg:text-base border",
           className
         )}
         value={value ?? ""}
